@@ -1,0 +1,29 @@
+From 5e73c161ef6865133f8ca9f6591f86d30a7d7a1a Mon Sep 17 00:00:00 2001
+From: Ikey Doherty <michael.i.doherty@intel.com>
+Date: Fri, 22 May 2015 13:40:38 +0100
+Subject: [PATCH] Use system directory for system-wide udev rules
+
+This ensures that fuse functions correctly on stateless operating systems
+without requiring use of the site configuration directory (/etc/).
+
+Signed-off-by: Ikey Doherty <michael.i.doherty@intel.com>
+---
+ configure.ac | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/configure.ac b/configure.ac
+index eff1dd8..55151b5 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -81,7 +81,7 @@ if test -z "$MOUNT_FUSE_PATH"; then
+ fi
+ AC_SUBST(MOUNT_FUSE_PATH)
+ if test -z "$UDEV_RULES_PATH"; then
+-	UDEV_RULES_PATH=/etc/udev/rules.d
++	UDEV_RULES_PATH="${prefix}/lib/udev/rules.d"
+ 	AC_MSG_NOTICE([UDEV_RULES_PATH env var not set, using default $UDEV_RULES_PATH])
+ fi
+ AC_SUBST(UDEV_RULES_PATH)
+-- 
+1.9.1
+
