@@ -1,4 +1,5 @@
 PKG_NAME := fuse
-URL := http://downloads.sourceforge.net/fuse/fuse-2.9.4.tar.gz
+URL := https://github.com/libfuse/libfuse/releases/download/fuse-3.0.0/fuse-3.0.0.tar.gz
+
 
 include ../common/Makefile.common
