@@ -1,0 +1,1 @@
+cp %{buildroot}/usr/lib64/pkgconfig/fuse3.pc  %{buildroot}/usr/lib64/pkgconfig/fuse.pc

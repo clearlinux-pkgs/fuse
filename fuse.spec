@@ -4,7 +4,7 @@
 #
 Name     : fuse
 Version  : 3.0.1
-Release  : 17
+Release  : 18
 URL      : https://github.com/libfuse/libfuse/releases/download/fuse-3.0.1/fuse-3.0.1.tar.gz
 Source0  : https://github.com/libfuse/libfuse/releases/download/fuse-3.0.1/fuse-3.0.1.tar.gz
 Summary  : Filesystem in Userspace
@@ -86,7 +86,7 @@ lib components for the fuse package.
 
 %build
 export LANG=C
-export SOURCE_DATE_EPOCH=1492373092
+export SOURCE_DATE_EPOCH=1492382973
 %reconfigure --disable-static
 make V=1  %{?_smp_mflags}
 
@@ -98,9 +98,12 @@ export no_proxy=localhost
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1492373092
+export SOURCE_DATE_EPOCH=1492382973
 rm -rf %{buildroot}
 %make_install
+## make_install_append content
+cp %{buildroot}/usr/lib64/pkgconfig/fuse3.pc  %{buildroot}/usr/lib64/pkgconfig/fuse.pc
+## make_install_append end
 
 %files
 %defattr(-,root,root,-)
@@ -122,6 +125,7 @@ rm -rf %{buildroot}
 /usr/include/fuse3/fuse_lowlevel.h
 /usr/include/fuse3/fuse_opt.h
 /usr/lib64/libfuse3.so
+/usr/lib64/pkgconfig/fuse.pc
 /usr/lib64/pkgconfig/fuse3.pc
 
 %files doc
