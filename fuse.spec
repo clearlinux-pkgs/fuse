@@ -4,15 +4,24 @@
 #
 Name     : fuse
 Version  : 3.0.1
-Release  : 16
+Release  : 17
 URL      : https://github.com/libfuse/libfuse/releases/download/fuse-3.0.1/fuse-3.0.1.tar.gz
 Source0  : https://github.com/libfuse/libfuse/releases/download/fuse-3.0.1/fuse-3.0.1.tar.gz
 Summary  : Filesystem in Userspace
 Group    : Development/Tools
 License  : GPL-2.0 LGPL-2.1
 Requires: fuse-bin
+Requires: fuse-config
 Requires: fuse-lib
 Requires: fuse-doc
+BuildRequires : automake
+BuildRequires : automake-dev
+BuildRequires : gettext-bin
+BuildRequires : libtool
+BuildRequires : libtool-dev
+BuildRequires : m4
+BuildRequires : pkg-config-dev
+Patch1: stateless.patch
 
 %description
 libfuse
@@ -29,9 +38,18 @@ for communicating with the FUSE kernel module.
 %package bin
 Summary: bin components for the fuse package.
 Group: Binaries
+Requires: fuse-config
 
 %description bin
 bin components for the fuse package.
+
+
+%package config
+Summary: config components for the fuse package.
+Group: Default
+
+%description config
+config components for the fuse package.
 
 
 %package dev
@@ -56,6 +74,7 @@ doc components for the fuse package.
 %package lib
 Summary: lib components for the fuse package.
 Group: Libraries
+Requires: fuse-config
 
 %description lib
 lib components for the fuse package.
@@ -63,11 +82,12 @@ lib components for the fuse package.
 
 %prep
 %setup -q -n fuse-3.0.1
+%patch1 -p1
 
 %build
 export LANG=C
-export SOURCE_DATE_EPOCH=1491933055
-%configure --disable-static
+export SOURCE_DATE_EPOCH=1492373092
+%reconfigure --disable-static
 make V=1  %{?_smp_mflags}
 
 %check
@@ -78,18 +98,21 @@ export no_proxy=localhost
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1491933055
+export SOURCE_DATE_EPOCH=1492373092
 rm -rf %{buildroot}
 %make_install
 
 %files
 %defattr(-,root,root,-)
-/usr/lib64/udev/rules.d/99-fuse3.rules
 
 %files bin
 %defattr(-,root,root,-)
 /usr/bin/fusermount3
 /usr/bin/mount.fuse3
+
+%files config
+%defattr(-,root,root,-)
+/usr/lib/udev/rules.d/99-fuse3.rules
 
 %files dev
 %defattr(-,root,root,-)
