@@ -1,0 +1,11 @@
+--- fuse-3.2.0/util/install_helper.sh~	2017-09-12 13:50:16.000000000 +0000
++++ fuse-3.2.0/util/install_helper.sh	2017-09-17 19:24:41.926576707 +0000
+@@ -4,7 +4,7 @@
+ # build system. Thank you for your cooperation.
+ #
+ 
+-set -e
++set -x
+ 
+ sysconfdir="$1"
+ bindir="$2"
