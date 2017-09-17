@@ -4,9 +4,9 @@
 #
 Name     : fuse
 Version  : 3.2.0
-Release  : 18
-URL      : https://github.com/libfuse/libfuse/releases/download/fuse-3.2.0/fuse-3.2.0.tar.xzhttps://github.com/libfuse/libfuse/releases/download/fuse-3.2.0/fuse-3.2.0.tar.xz
-Source0  : https://github.com/libfuse/libfuse/releases/download/fuse-3.2.0/fuse-3.2.0.tar.xzhttps://github.com/libfuse/libfuse/releases/download/fuse-3.2.0/fuse-3.2.0.tar.xz
+Release  : 19
+URL      : https://github.com/libfuse/libfuse/releases/download/fuse-3.2.0/fuse-3.2.0.tar.xz
+Source0  : https://github.com/libfuse/libfuse/releases/download/fuse-3.2.0/fuse-3.2.0.tar.xz
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-2.0 LGPL-2.1
@@ -86,7 +86,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1505676350
+export SOURCE_DATE_EPOCH=1505676854
 CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS" LDFLAGS="$LDFLAGS" meson --prefix /usr --buildtype=plain  builddir
 ninja -v -C builddir
 
