@@ -6,7 +6,7 @@
 #
 Name     : fuse
 Version  : 3.2.2
-Release  : 22
+Release  : 23
 URL      : https://github.com/libfuse/libfuse/releases/download/fuse-3.2.2/fuse-3.2.2.tar.xz
 Source0  : https://github.com/libfuse/libfuse/releases/download/fuse-3.2.2/fuse-3.2.2.tar.xz
 Source99 : https://github.com/libfuse/libfuse/releases/download/fuse-3.2.2/fuse-3.2.2.tar.xz.asc
