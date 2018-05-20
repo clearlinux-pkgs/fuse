@@ -5,18 +5,18 @@
 # Source0 file verified with key 0xD113FCAC3C4E599F (Nikolaus@rath.org)
 #
 Name     : fuse
-Version  : 3.2.2
-Release  : 24
-URL      : https://github.com/libfuse/libfuse/releases/download/fuse-3.2.2/fuse-3.2.2.tar.xz
-Source0  : https://github.com/libfuse/libfuse/releases/download/fuse-3.2.2/fuse-3.2.2.tar.xz
-Source99 : https://github.com/libfuse/libfuse/releases/download/fuse-3.2.2/fuse-3.2.2.tar.xz.asc
+Version  : 3.2.3
+Release  : 25
+URL      : https://github.com/libfuse/libfuse/releases/download/fuse-3.2.3/fuse-3.2.3.tar.xz
+Source0  : https://github.com/libfuse/libfuse/releases/download/fuse-3.2.3/fuse-3.2.3.tar.xz
+Source99 : https://github.com/libfuse/libfuse/releases/download/fuse-3.2.3/fuse-3.2.3.tar.xz.asc
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-2.0 LGPL-2.1
 Requires: fuse-bin
 Requires: fuse-config
 Requires: fuse-lib
-Requires: fuse-doc
+Requires: fuse-man
 BuildRequires : meson
 BuildRequires : ninja
 BuildRequires : pkgconfig(udev)
@@ -39,6 +39,7 @@ for communicating with the FUSE kernel module.
 Summary: bin components for the fuse package.
 Group: Binaries
 Requires: fuse-config
+Requires: fuse-man
 
 %description bin
 bin components for the fuse package.
@@ -63,14 +64,6 @@ Provides: fuse-devel
 dev components for the fuse package.
 
 
-%package doc
-Summary: doc components for the fuse package.
-Group: Documentation
-
-%description doc
-doc components for the fuse package.
-
-
 %package lib
 Summary: lib components for the fuse package.
 Group: Libraries
@@ -79,8 +72,16 @@ Group: Libraries
 lib components for the fuse package.
 
 
+%package man
+Summary: man components for the fuse package.
+Group: Default
+
+%description man
+man components for the fuse package.
+
+
 %prep
-%setup -q -n fuse-3.2.2
+%setup -q -n fuse-3.2.3
 %patch1 -p1
 
 %build
@@ -88,8 +89,8 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1522505868
-CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS" LDFLAGS="$LDFLAGS" meson --prefix /usr --buildtype=plain  builddir
+export SOURCE_DATE_EPOCH=1526828661
+CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS" LDFLAGS="$LDFLAGS" meson --prefix /usr --buildtype=plain   builddir
 ninja -v -C builddir
 
 %install
@@ -117,12 +118,12 @@ DESTDIR=%{buildroot} ninja -C builddir install
 /usr/lib64/libfuse3.so
 /usr/lib64/pkgconfig/fuse3.pc
 
-%files doc
-%defattr(-,root,root,-)
-%doc /usr/share/man/man1/*
-%doc /usr/share/man/man8/*
-
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libfuse3.so.3
-/usr/lib64/libfuse3.so.3.2.1
+/usr/lib64/libfuse3.so.3.2.3
+
+%files man
+%defattr(-,root,root,-)
+/usr/share/man/man1/fusermount3.1.gz
+/usr/share/man/man8/mount.fuse.8.gz
