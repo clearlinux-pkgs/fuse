@@ -6,7 +6,7 @@
 #
 Name     : fuse
 Version  : 3.2.3
-Release  : 25
+Release  : 26
 URL      : https://github.com/libfuse/libfuse/releases/download/fuse-3.2.3/fuse-3.2.3.tar.xz
 Source0  : https://github.com/libfuse/libfuse/releases/download/fuse-3.2.3/fuse-3.2.3.tar.xz
 Source99 : https://github.com/libfuse/libfuse/releases/download/fuse-3.2.3/fuse-3.2.3.tar.xz.asc
@@ -16,11 +16,10 @@ License  : GPL-2.0 LGPL-2.1
 Requires: fuse-bin
 Requires: fuse-config
 Requires: fuse-lib
+Requires: fuse-license
 Requires: fuse-man
-BuildRequires : meson
-BuildRequires : ninja
+BuildRequires : buildreq-meson
 BuildRequires : pkgconfig(udev)
-BuildRequires : python3
 Patch1: build.patch
 
 %description
@@ -39,6 +38,7 @@ for communicating with the FUSE kernel module.
 Summary: bin components for the fuse package.
 Group: Binaries
 Requires: fuse-config
+Requires: fuse-license
 Requires: fuse-man
 
 %description bin
@@ -67,9 +67,18 @@ dev components for the fuse package.
 %package lib
 Summary: lib components for the fuse package.
 Group: Libraries
+Requires: fuse-license
 
 %description lib
 lib components for the fuse package.
+
+
+%package license
+Summary: license components for the fuse package.
+Group: Default
+
+%description license
+license components for the fuse package.
 
 
 %package man
@@ -89,18 +98,25 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1526828661
+export SOURCE_DATE_EPOCH=1535572492
 CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS" LDFLAGS="$LDFLAGS" meson --prefix /usr --buildtype=plain   builddir
 ninja -v -C builddir
 
 %install
+mkdir -p %{buildroot}/usr/share/doc/fuse
+cp COPYING %{buildroot}/usr/share/doc/fuse/COPYING
+cp COPYING.LIB %{buildroot}/usr/share/doc/fuse/COPYING.LIB
 DESTDIR=%{buildroot} ninja -C builddir install
+## install_append content
+ln -s /usr/bin/fusermount3 %{buildroot}/usr/bin/fusermount
+## install_append end
 
 %files
 %defattr(-,root,root,-)
 
 %files bin
 %defattr(-,root,root,-)
+/usr/bin/fusermount
 /usr/bin/fusermount3
 /usr/sbin/mount.fuse3
 
@@ -122,6 +138,11 @@ DESTDIR=%{buildroot} ninja -C builddir install
 %defattr(-,root,root,-)
 /usr/lib64/libfuse3.so.3
 /usr/lib64/libfuse3.so.3.2.3
+
+%files license
+%defattr(-,root,root,-)
+/usr/share/doc/fuse/COPYING
+/usr/share/doc/fuse/COPYING.LIB
 
 %files man
 %defattr(-,root,root,-)

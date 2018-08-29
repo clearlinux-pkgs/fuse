@@ -1,0 +1,2 @@
+# Some tools (appimage) call to fusermount so add a friendly symlink
+ln -s /usr/bin/fusermount3 %{buildroot}/usr/bin/fusermount
