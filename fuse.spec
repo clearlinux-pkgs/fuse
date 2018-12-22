@@ -5,21 +5,21 @@
 # Source0 file verified with key 0xD113FCAC3C4E599F (Nikolaus@rath.org)
 #
 Name     : fuse
-Version  : 3.2.6
-Release  : 28
-URL      : https://github.com/libfuse/libfuse/releases/download/fuse-3.2.6/fuse-3.2.6.tar.xz
-Source0  : https://github.com/libfuse/libfuse/releases/download/fuse-3.2.6/fuse-3.2.6.tar.xz
-Source99 : https://github.com/libfuse/libfuse/releases/download/fuse-3.2.6/fuse-3.2.6.tar.xz.asc
+Version  : 3.4.1
+Release  : 29
+URL      : https://github.com/libfuse/libfuse/releases/download/fuse-3.4.1/fuse-3.4.1.tar.xz
+Source0  : https://github.com/libfuse/libfuse/releases/download/fuse-3.4.1/fuse-3.4.1.tar.xz
+Source99 : https://github.com/libfuse/libfuse/releases/download/fuse-3.4.1/fuse-3.4.1.tar.xz.asc
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-2.0 LGPL-2.1
-Requires: fuse-bin
-Requires: fuse-config
-Requires: fuse-lib
-Requires: fuse-license
-Requires: fuse-man
+Requires: fuse-bin = %{version}-%{release}
+Requires: fuse-config = %{version}-%{release}
+Requires: fuse-lib = %{version}-%{release}
+Requires: fuse-license = %{version}-%{release}
+Requires: fuse-man = %{version}-%{release}
 BuildRequires : buildreq-meson
-BuildRequires : pkgconfig(udev)
+BuildRequires : systemd-dev
 Patch1: build.patch
 
 %description
@@ -37,9 +37,9 @@ for communicating with the FUSE kernel module.
 %package bin
 Summary: bin components for the fuse package.
 Group: Binaries
-Requires: fuse-config
-Requires: fuse-license
-Requires: fuse-man
+Requires: fuse-config = %{version}-%{release}
+Requires: fuse-license = %{version}-%{release}
+Requires: fuse-man = %{version}-%{release}
 
 %description bin
 bin components for the fuse package.
@@ -56,9 +56,9 @@ config components for the fuse package.
 %package dev
 Summary: dev components for the fuse package.
 Group: Development
-Requires: fuse-lib
-Requires: fuse-bin
-Provides: fuse-devel
+Requires: fuse-lib = %{version}-%{release}
+Requires: fuse-bin = %{version}-%{release}
+Provides: fuse-devel = %{version}-%{release}
 
 %description dev
 dev components for the fuse package.
@@ -67,7 +67,7 @@ dev components for the fuse package.
 %package lib
 Summary: lib components for the fuse package.
 Group: Libraries
-Requires: fuse-license
+Requires: fuse-license = %{version}-%{release}
 
 %description lib
 lib components for the fuse package.
@@ -90,7 +90,7 @@ man components for the fuse package.
 
 
 %prep
-%setup -q -n fuse-3.2.6
+%setup -q -n fuse-3.4.1
 %patch1 -p1
 
 %build
@@ -98,14 +98,13 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1535824471
+export SOURCE_DATE_EPOCH=1545507664
 CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS" LDFLAGS="$LDFLAGS" meson --prefix /usr --buildtype=plain   builddir
 ninja -v -C builddir
 
 %install
-mkdir -p %{buildroot}/usr/share/doc/fuse
-cp COPYING %{buildroot}/usr/share/doc/fuse/COPYING
-cp COPYING.LIB %{buildroot}/usr/share/doc/fuse/COPYING.LIB
+mkdir -p %{buildroot}/usr/share/package-licenses/fuse
+cp GPL2.txt %{buildroot}/usr/share/package-licenses/fuse/GPL2.txt
 DESTDIR=%{buildroot} ninja -C builddir install
 ## install_append content
 ln -s /usr/bin/fusermount3 %{buildroot}/usr/bin/fusermount
@@ -137,14 +136,13 @@ ln -s /usr/bin/fusermount3 %{buildroot}/usr/bin/fusermount
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libfuse3.so.3
-/usr/lib64/libfuse3.so.3.2.6
+/usr/lib64/libfuse3.so.3.4.1
 
 %files license
-%defattr(-,root,root,-)
-/usr/share/doc/fuse/COPYING
-/usr/share/doc/fuse/COPYING.LIB
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/fuse/GPL2.txt
 
 %files man
-%defattr(-,root,root,-)
-/usr/share/man/man1/fusermount3.1.gz
-/usr/share/man/man8/mount.fuse3.8.gz
+%defattr(0644,root,root,0755)
+/usr/share/man/man1/fusermount3.1
+/usr/share/man/man8/mount.fuse3.8
