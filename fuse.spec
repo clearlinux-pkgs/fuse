@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xD113FCAC3C4E599F (Nikolaus@rath.org)
 #
 Name     : fuse
-Version  : 3.6.1
-Release  : 32
-URL      : https://github.com/libfuse/libfuse/releases/download/fuse-3.6.1/fuse-3.6.1.tar.xz
-Source0  : https://github.com/libfuse/libfuse/releases/download/fuse-3.6.1/fuse-3.6.1.tar.xz
-Source99 : https://github.com/libfuse/libfuse/releases/download/fuse-3.6.1/fuse-3.6.1.tar.xz.asc
+Version  : 3.6.2
+Release  : 33
+URL      : https://github.com/libfuse/libfuse/releases/download/fuse-3.6.2/fuse-3.6.2.tar.xz
+Source0  : https://github.com/libfuse/libfuse/releases/download/fuse-3.6.2/fuse-3.6.2.tar.xz
+Source99 : https://github.com/libfuse/libfuse/releases/download/fuse-3.6.2/fuse-3.6.2.tar.xz.asc
 Summary  : A library that makes it possible to implement a filesystem in a userspace program.
 Group    : Development/Tools
 License  : GPL-2.0 LGPL-2.1
@@ -91,15 +91,15 @@ man components for the fuse package.
 
 
 %prep
-%setup -q -n fuse-3.6.1
+%setup -q -n fuse-3.6.2
 %patch1 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1560782329
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1562761016
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
 export FCFLAGS="$CFLAGS -fno-lto "
@@ -142,7 +142,7 @@ ln -s /usr/bin/fusermount3 %{buildroot}/usr/bin/fusermount
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libfuse3.so.3
-/usr/lib64/libfuse3.so.3.6.1
+/usr/lib64/libfuse3.so.3.6.2
 
 %files license
 %defattr(0644,root,root,0755)
