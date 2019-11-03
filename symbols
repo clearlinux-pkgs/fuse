@@ -3,6 +3,7 @@ libfuse3.so.3:FUSE_3.1
 libfuse3.so.3:FUSE_3.2
 libfuse3.so.3:FUSE_3.3
 libfuse3.so.3:FUSE_3.4
+libfuse3.so.3:FUSE_3.7
 libfuse3.so.3:cuse_lowlevel_main
 libfuse3.so.3:cuse_lowlevel_new
 libfuse3.so.3:cuse_lowlevel_setup
@@ -36,6 +37,7 @@ libfuse3.so.3:fuse_fs_ioctl
 libfuse3.so.3:fuse_fs_link
 libfuse3.so.3:fuse_fs_listxattr
 libfuse3.so.3:fuse_fs_lock
+libfuse3.so.3:fuse_fs_lseek
 libfuse3.so.3:fuse_fs_mkdir
 libfuse3.so.3:fuse_fs_mknod
 libfuse3.so.3:fuse_fs_new
@@ -65,6 +67,7 @@ libfuse3.so.3:fuse_getgroups
 libfuse3.so.3:fuse_interrupted
 libfuse3.so.3:fuse_invalidate_path
 libfuse3.so.3:fuse_lib_help
+libfuse3.so.3:fuse_log
 libfuse3.so.3:fuse_loop
 libfuse3.so.3:fuse_loop_mt
 libfuse3.so.3:fuse_loop_mt_31
@@ -106,6 +109,7 @@ libfuse3.so.3:fuse_reply_ioctl_iov
 libfuse3.so.3:fuse_reply_ioctl_retry
 libfuse3.so.3:fuse_reply_iov
 libfuse3.so.3:fuse_reply_lock
+libfuse3.so.3:fuse_reply_lseek
 libfuse3.so.3:fuse_reply_none
 libfuse3.so.3:fuse_reply_open
 libfuse3.so.3:fuse_reply_poll
@@ -131,6 +135,7 @@ libfuse3.so.3:fuse_session_process_buf
 libfuse3.so.3:fuse_session_receive_buf
 libfuse3.so.3:fuse_session_reset
 libfuse3.so.3:fuse_session_unmount
+libfuse3.so.3:fuse_set_log_func
 libfuse3.so.3:fuse_set_signal_handlers
 libfuse3.so.3:fuse_start_cleanup_thread
 libfuse3.so.3:fuse_stop_cleanup_thread
