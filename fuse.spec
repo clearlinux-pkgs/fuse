@@ -5,12 +5,12 @@
 # Source0 file verified with key 0xD113FCAC3C4E599F (Nikolaus@rath.org)
 #
 Name     : fuse
-Version  : 3.8.0
-Release  : 34
-URL      : https://github.com/libfuse/libfuse/releases/download/fuse-3.8.0/fuse-3.8.0.tar.xz
-Source0  : https://github.com/libfuse/libfuse/releases/download/fuse-3.8.0/fuse-3.8.0.tar.xz
-Source1 : https://github.com/libfuse/libfuse/releases/download/fuse-3.8.0/fuse-3.8.0.tar.xz.asc
-Summary  : A library that makes it possible to implement a filesystem in a userspace program.
+Version  : 3.9.0
+Release  : 36
+URL      : https://github.com/libfuse/libfuse/releases/download/fuse-3.9.0/fuse-3.9.0.tar.xz
+Source0  : https://github.com/libfuse/libfuse/releases/download/fuse-3.9.0/fuse-3.9.0.tar.xz
+Source1  : https://github.com/libfuse/libfuse/releases/download/fuse-3.9.0/fuse-3.9.0.tar.xz.asc
+Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-2.0 LGPL-2.1
 Requires: fuse-bin = %{version}-%{release}
@@ -20,7 +20,6 @@ Requires: fuse-license = %{version}-%{release}
 Requires: fuse-man = %{version}-%{release}
 BuildRequires : buildreq-meson
 BuildRequires : systemd-dev
-BuildRequires : util-linux
 Patch1: build.patch
 
 %description
@@ -60,7 +59,6 @@ Requires: fuse-lib = %{version}-%{release}
 Requires: fuse-bin = %{version}-%{release}
 Provides: fuse-devel = %{version}-%{release}
 Requires: fuse = %{version}-%{release}
-Requires: fuse = %{version}-%{release}
 
 %description dev
 dev components for the fuse package.
@@ -92,7 +90,8 @@ man components for the fuse package.
 
 
 %prep
-%setup -q -n fuse-3.8.0
+%setup -q -n fuse-3.9.0
+cd %{_builddir}/fuse-3.9.0
 %patch1 -p1
 
 %build
@@ -100,8 +99,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1572803849
-# -Werror is for werrorists
+export SOURCE_DATE_EPOCH=1579825418
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
 export FCFLAGS="$CFLAGS -fno-lto "
@@ -112,11 +110,12 @@ ninja -v -C builddir
 
 %install
 mkdir -p %{buildroot}/usr/share/package-licenses/fuse
-cp %{_builddir}/fuse-3.8.0/GPL2.txt %{buildroot}/usr/share/package-licenses/fuse/4cc77b90af91e615a64ae04893fdffa7939db84c
+cp %{_builddir}/fuse-3.9.0/GPL2.txt %{buildroot}/usr/share/package-licenses/fuse/4cc77b90af91e615a64ae04893fdffa7939db84c
 DESTDIR=%{buildroot} ninja -C builddir install
 ## Remove excluded files
 rm -f %{buildroot}/etc/init.d/fuse
 ## install_append content
+# Some tools (appimage) call to fusermount so add a friendly symlink
 ln -s /usr/bin/fusermount3 %{buildroot}/usr/bin/fusermount
 ## install_append end
 
@@ -147,7 +146,7 @@ ln -s /usr/bin/fusermount3 %{buildroot}/usr/bin/fusermount
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libfuse3.so.3
-/usr/lib64/libfuse3.so.3.8.0
+/usr/lib64/libfuse3.so.3.9.0
 
 %files license
 %defattr(0644,root,root,0755)
