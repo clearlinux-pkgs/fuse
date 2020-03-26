@@ -6,7 +6,7 @@
 #
 Name     : fuse
 Version  : 3.9.1
-Release  : 37
+Release  : 38
 URL      : https://github.com/libfuse/libfuse/releases/download/fuse-3.9.1/fuse-3.9.1.tar.xz
 Source0  : https://github.com/libfuse/libfuse/releases/download/fuse-3.9.1/fuse-3.9.1.tar.xz
 Source1  : https://github.com/libfuse/libfuse/releases/download/fuse-3.9.1/fuse-3.9.1.tar.xz.asc
@@ -100,7 +100,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1585087421
+export SOURCE_DATE_EPOCH=1585252186
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
 export FCFLAGS="$CFLAGS -fno-lto "
@@ -125,6 +125,7 @@ rm -f %{buildroot}/etc/init.d/fuse
 ## install_append content
 # Some tools (appimage) call to fusermount so add a friendly symlink
 ln -s /usr/bin/fusermount3 %{buildroot}/usr/bin/fusermount
+mv %{buildroot}/usr/sbin/mount.fuse3 %{buildroot}/usr/bin/mount.fuse3
 ## install_append end
 
 %files
@@ -134,7 +135,7 @@ ln -s /usr/bin/fusermount3 %{buildroot}/usr/bin/fusermount
 %defattr(-,root,root,-)
 /usr/bin/fusermount
 /usr/bin/fusermount3
-/usr/sbin/mount.fuse3
+/usr/bin/mount.fuse3
 
 %files config
 %defattr(-,root,root,-)
