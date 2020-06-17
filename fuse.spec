@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xD113FCAC3C4E599F (Nikolaus@rath.org)
 #
 Name     : fuse
-Version  : 3.9.1
-Release  : 38
-URL      : https://github.com/libfuse/libfuse/releases/download/fuse-3.9.1/fuse-3.9.1.tar.xz
-Source0  : https://github.com/libfuse/libfuse/releases/download/fuse-3.9.1/fuse-3.9.1.tar.xz
-Source1  : https://github.com/libfuse/libfuse/releases/download/fuse-3.9.1/fuse-3.9.1.tar.xz.asc
+Version  : 3.9.2
+Release  : 39
+URL      : https://github.com/libfuse/libfuse/releases/download/fuse-3.9.2/fuse-3.9.2.tar.xz
+Source0  : https://github.com/libfuse/libfuse/releases/download/fuse-3.9.2/fuse-3.9.2.tar.xz
+Source1  : https://github.com/libfuse/libfuse/releases/download/fuse-3.9.2/fuse-3.9.2.tar.xz.asc
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-2.0 LGPL-2.1
@@ -91,8 +91,8 @@ man components for the fuse package.
 
 
 %prep
-%setup -q -n fuse-3.9.1
-cd %{_builddir}/fuse-3.9.1
+%setup -q -n fuse-3.9.2
+cd %{_builddir}/fuse-3.9.2
 %patch1 -p1
 
 %build
@@ -100,11 +100,11 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1585252186
+export SOURCE_DATE_EPOCH=1592371911
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
-export FCFLAGS="$CFLAGS -fno-lto "
-export FFLAGS="$CFLAGS -fno-lto "
+export FCFLAGS="$FFLAGS -fno-lto "
+export FFLAGS="$FFLAGS -fno-lto "
 export CXXFLAGS="$CXXFLAGS -fno-lto "
 CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS" LDFLAGS="$LDFLAGS" meson --libdir=lib64 --prefix=/usr --buildtype=plain   builddir
 ninja -v -C builddir
@@ -118,7 +118,7 @@ python -m pytest test/
 
 %install
 mkdir -p %{buildroot}/usr/share/package-licenses/fuse
-cp %{_builddir}/fuse-3.9.1/GPL2.txt %{buildroot}/usr/share/package-licenses/fuse/4cc77b90af91e615a64ae04893fdffa7939db84c
+cp %{_builddir}/fuse-3.9.2/GPL2.txt %{buildroot}/usr/share/package-licenses/fuse/4cc77b90af91e615a64ae04893fdffa7939db84c
 DESTDIR=%{buildroot} ninja -C builddir install
 ## Remove excluded files
 rm -f %{buildroot}/etc/init.d/fuse
@@ -155,7 +155,7 @@ mv %{buildroot}/usr/sbin/mount.fuse3 %{buildroot}/usr/bin/mount.fuse3
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libfuse3.so.3
-/usr/lib64/libfuse3.so.3.9.1
+/usr/lib64/libfuse3.so.3.9.2
 
 %files license
 %defattr(0644,root,root,0755)
