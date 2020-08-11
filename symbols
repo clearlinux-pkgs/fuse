@@ -129,6 +129,7 @@ libfuse3.so.3:fuse_session_fd
 libfuse3.so.3:fuse_session_loop
 libfuse3.so.3:fuse_session_loop_mt
 libfuse3.so.3:fuse_session_loop_mt_31
+libfuse3.so.3:fuse_session_loop_mt_32
 libfuse3.so.3:fuse_session_mount
 libfuse3.so.3:fuse_session_new
 libfuse3.so.3:fuse_session_process_buf
