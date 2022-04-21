@@ -6,7 +6,7 @@
 #
 Name     : fuse
 Version  : 3.10.5
-Release  : 45
+Release  : 46
 URL      : https://github.com/libfuse/libfuse/releases/download/fuse-3.10.5/fuse-3.10.5.tar.xz
 Source0  : https://github.com/libfuse/libfuse/releases/download/fuse-3.10.5/fuse-3.10.5.tar.xz
 Source1  : https://github.com/libfuse/libfuse/releases/download/fuse-3.10.5/fuse-3.10.5.tar.xz.asc
@@ -19,7 +19,7 @@ Requires: fuse-lib = %{version}-%{release}
 Requires: fuse-license = %{version}-%{release}
 Requires: fuse-man = %{version}-%{release}
 BuildRequires : buildreq-meson
-BuildRequires : pytest
+BuildRequires : pypi-pytest
 BuildRequires : systemd-dev
 Patch1: build.patch
 
@@ -100,7 +100,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1630966903
+export SOURCE_DATE_EPOCH=1650556490
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
 export FCFLAGS="$FFLAGS -fno-lto "
@@ -121,7 +121,7 @@ mkdir -p %{buildroot}/usr/share/package-licenses/fuse
 cp %{_builddir}/fuse-3.10.5/GPL2.txt %{buildroot}/usr/share/package-licenses/fuse/4cc77b90af91e615a64ae04893fdffa7939db84c
 DESTDIR=%{buildroot} ninja -C builddir install
 ## Remove excluded files
-rm -f %{buildroot}/etc/init.d/fuse
+rm -f %{buildroot}*/etc/init.d/fuse
 ## install_append content
 # Some tools (appimage) call to fusermount so add a friendly symlink
 ln -s /usr/bin/fusermount3 %{buildroot}/usr/bin/fusermount
