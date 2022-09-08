@@ -1,5 +1,6 @@
 libfuse3.so.3:FUSE_3.0
 libfuse3.so.3:FUSE_3.1
+libfuse3.so.3:FUSE_3.12
 libfuse3.so.3:FUSE_3.2
 libfuse3.so.3:FUSE_3.3
 libfuse3.so.3:FUSE_3.4
@@ -69,8 +70,16 @@ libfuse3.so.3:fuse_invalidate_path
 libfuse3.so.3:fuse_lib_help
 libfuse3.so.3:fuse_log
 libfuse3.so.3:fuse_loop
+libfuse3.so.3:fuse_loop_cfg_convert
+libfuse3.so.3:fuse_loop_cfg_create
+libfuse3.so.3:fuse_loop_cfg_destroy
+libfuse3.so.3:fuse_loop_cfg_set_clone_fd
+libfuse3.so.3:fuse_loop_cfg_set_idle_threads
+libfuse3.so.3:fuse_loop_cfg_set_max_threads
 libfuse3.so.3:fuse_loop_mt
 libfuse3.so.3:fuse_loop_mt_31
+libfuse3.so.3:fuse_loop_mt_312
+libfuse3.so.3:fuse_loop_mt_32
 libfuse3.so.3:fuse_lowlevel_help
 libfuse3.so.3:fuse_lowlevel_notify_delete
 libfuse3.so.3:fuse_lowlevel_notify_inval_entry
@@ -93,6 +102,8 @@ libfuse3.so.3:fuse_opt_insert_arg
 libfuse3.so.3:fuse_opt_match
 libfuse3.so.3:fuse_opt_parse
 libfuse3.so.3:fuse_parse_cmdline
+libfuse3.so.3:fuse_parse_cmdline_30
+libfuse3.so.3:fuse_parse_cmdline_312
 libfuse3.so.3:fuse_parse_conn_info_opts
 libfuse3.so.3:fuse_pkgversion
 libfuse3.so.3:fuse_pollhandle_destroy
@@ -129,6 +140,7 @@ libfuse3.so.3:fuse_session_fd
 libfuse3.so.3:fuse_session_loop
 libfuse3.so.3:fuse_session_loop_mt
 libfuse3.so.3:fuse_session_loop_mt_31
+libfuse3.so.3:fuse_session_loop_mt_312
 libfuse3.so.3:fuse_session_loop_mt_32
 libfuse3.so.3:fuse_session_mount
 libfuse3.so.3:fuse_session_new
