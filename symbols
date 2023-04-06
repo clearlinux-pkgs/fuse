@@ -82,6 +82,7 @@ libfuse3.so.3:fuse_loop_mt_312
 libfuse3.so.3:fuse_loop_mt_32
 libfuse3.so.3:fuse_lowlevel_help
 libfuse3.so.3:fuse_lowlevel_notify_delete
+libfuse3.so.3:fuse_lowlevel_notify_expire_entry
 libfuse3.so.3:fuse_lowlevel_notify_inval_entry
 libfuse3.so.3:fuse_lowlevel_notify_inval_inode
 libfuse3.so.3:fuse_lowlevel_notify_poll
@@ -92,6 +93,7 @@ libfuse3.so.3:fuse_main_real
 libfuse3.so.3:fuse_mount
 libfuse3.so.3:fuse_new
 libfuse3.so.3:fuse_new_30
+libfuse3.so.3:fuse_new_31
 libfuse3.so.3:fuse_notify_poll
 libfuse3.so.3:fuse_open_channel
 libfuse3.so.3:fuse_opt_add_arg
@@ -133,6 +135,7 @@ libfuse3.so.3:fuse_req_getgroups
 libfuse3.so.3:fuse_req_interrupt_func
 libfuse3.so.3:fuse_req_interrupted
 libfuse3.so.3:fuse_req_userdata
+libfuse3.so.3:fuse_session_custom_io
 libfuse3.so.3:fuse_session_destroy
 libfuse3.so.3:fuse_session_exit
 libfuse3.so.3:fuse_session_exited
